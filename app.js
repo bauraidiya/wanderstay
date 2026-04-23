@@ -7,7 +7,8 @@ const methodOverride = require("method-override");
 const ejsMate= require("ejs-mate"); 
 const ExpressError = require("./utils/ExpressError.js")
 const wrapAsync = require("./utils/wrapAsync.js");
-const {listingSchema} = require("./schema.js")
+const {listingSchema, reviewSchema} = require("./schema.js");
+const Review= require("./models/reviews.js");
 
 main()
     .then((res)=>{
@@ -39,9 +40,20 @@ app.get("/listing", wrapAsync(async(req,res)=>{
 
 const validateListing = ((req,res,next)=>{
     let {error} = listingSchema.validate(req.body);
-    if(error){
-        throw new ExpressError(400, error);
-    }else{
+    if (error) {
+        let errMsg = error.details[0].message;
+        throw new ExpressError(400, errMsg);
+    } else {
+        next();
+    }
+});
+
+const validateReview = ((req,res,next)=>{
+    let {error} = reviewSchema.validate(req.body);
+    if (error) {
+        let errMsg = error.details[0].message;
+        throw new ExpressError(400, errMsg);
+    } else {
         next();
     }
 });
@@ -61,7 +73,7 @@ app.post("/listing", validateListing , wrapAsync(async(req,res,next)=>{
 
 app.get("/listing/:id",wrapAsync(async(req,res)=>{
     let {id}= req.params;
-    const allData = await Listing.findById(id);
+    const allData = await Listing.findById(id).populate("reviews");
     res.render("./listings/show.ejs", {allData});
 })
 );
@@ -91,6 +103,19 @@ app.delete("/listing/:id",wrapAsync(async(req,res)=>{
 })
 );
 
+// reviews post
+app.post("/listing/:id/reviews", validateReview, wrapAsync(async(req,res)=>{
+ let listing = await Listing.findById(req.params.id);
+ let newReview =  new Review(req.body.review);
+
+ listing.reviews.push(newReview._id);
+ await newReview.save();
+ await listing.save();
+
+ console.log("newReview saved");
+  res.redirect(`/listing/${req.params.id}`);
+}
+));
 app.use((req,res,next)=>{
     next(new ExpressError(404, "OOPS Page not found!"));
 });
@@ -100,6 +125,8 @@ app.use((err,req,res,next)=>{
     res.status(status).render("error.ejs", {message});
     // res.status(status).send(message);
 });
+
+
 app.listen(8080,()=>{
     console.log("Server is listening to port 8080");
 });

@@ -2,13 +2,13 @@
 
     <div class="row ">
         <div class="col-8 offset-2 mt-3">
-    <h3>Details of List:- </h3>
+    <h3><%= allData.title %> </h3>
     </div>
     <div class="show-card col-6 offset-3">
         <img src="<%=allData.image.url%>" class="card-img-top show-img" alt="listing_Image">
-    <div class="card-body">
-         <p class="card-text"> <b> <%= allData.title %> </b><br>
-            Description:- <%= allData.description%><br>
+    <div class="card-body listing-card">
+         <p class="card-text"> <br>
+          <%= allData.description%><br>
             Price:- &#8377; <%= allData.price ? allData.price.toLocaleString("en-IN") : "N/A" %> / Night<br>
             Location:- <%= allData.location %><br>
             Country:- <%= allData.country %>            
@@ -21,6 +21,36 @@
         <form method="post" action="/listing/<%= allData._id %>?_method=DELETE" class="btn  col-2 offset-4 mt-2 mb-2 del">
         <button><b> Delete</b></button>
     </form>
+   </div>
+   <hr>
+
+   <div>
+    <h4><b>Leave a review</b></h4>
+    <form action="/listing/<%= allData._id%>/reviews" method="POST" class="needs-validation" novalidate>
+        <div class="mb-3 mt-3">
+            <label for="rating" class="form-lable"><b>Rating</b></label>
+            <input type="range" class="form-range" min="1" max="5" id="rating" name="review[rating]">
+        </div>
+        <div class="mb-3 mt-3">
+            <label for="comment" class="form-label"><b>Comments</b></label>
+            <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control " required></textarea>
+            <div class="invalid-feedback">Please add some comments for review</div>
+        </div>
+        <button class="btn btn-outline-dark mb-3">Submit</button>
+    </form>
+    <hr>
+
+    <p><b>All Review</b></p>
+        <div class="row">
+        <% for( review of allData.reviews) {%>
+            <div class="card col-12 col-md-5 mb-3 ms-2">
+                <div class="card-body">
+                    <h5 class="card-title">Diya</h5>
+                    <p class="card-text"><%= review.comment%></p>
+                    <p class="card-text"><%= review.rating%> &star;</p>
+                </div>
+            </div>
+            <%}%>
    </div>
     
     </div>
