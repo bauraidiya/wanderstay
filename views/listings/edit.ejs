@@ -6,7 +6,7 @@
         <form method="post" action="/listing/<%= allListing._id %>?_method=PUT" class="needs-validation" novalidate>
             <div class="mb-3">
                  <label for="title" class="form-label">Title</label>
-                 <input type="text" name="Listing[title]" value="<%= allListing.title %>" class="form-control" required>
+                 <input type="text" name="listing[title]" value="<%= allListing.title %>" class="form-control" required>
                  <div class="invalid-feedback">
                     Please provide a valid title.
                 </div> 
@@ -14,7 +14,7 @@
            
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                 <textarea name="Listing[description]" class="form-control" required><%= allListing.description %></textarea>
+                 <textarea name="listing[description]" class="form-control" required><%= allListing.description %></textarea>
                  <div class="invalid-feedback">
                     Description should be short.
                 </div> 
@@ -22,7 +22,7 @@
            
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input type="text" name="Listing[image][url]" value="<%= allListing.image.url %>" class="form-control" required>
+                <input type="text" name="listing[image][url]" value="<%= allListing.image.url %>" class="form-control" required>
                 <div class="invalid-feedback">
                     Please provide a valid url link.
                 </div> 
@@ -30,7 +30,7 @@
             
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
-                <input  name="Listing[price]" value="<%= allListing.price %>" required class="form-control" required>
+                <input  name="listing[price]" value="<%= allListing.price %>" required class="form-control" required>
                 <div class="invalid-feedback">
                     Please provide a valid Price.
                 </div> 
@@ -38,7 +38,7 @@
             
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>
-                 <input type="text" name="Listing[location]" value="<%= allListing.location %>" class="form-control"required>
+                 <input type="text" name="listing[location]" value="<%= allListing.location %>" class="form-control"required>
                  <div class="invalid-feedback">
                     Please provide a valid Location.
                 </div> 
@@ -46,7 +46,7 @@
            
             <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
-                <input type="text" name="Listing[country]" value="<%= allListing.country %>" class="form-control" required>
+                <input type="text" name="listing[country]" value="<%= allListing.country %>" class="form-control" required>
                 <div class="invalid-feedback">
                     Please provide a valid country.
                 </div> 

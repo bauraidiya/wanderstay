@@ -10,7 +10,10 @@ module.exports.listingSchema = Joi.object({
       "any.required": "Price is required"}),
         location: Joi.string().required(),
         country: Joi.string().required(),
-        image: Joi.string().allow("", null)
+        image: Joi.object({
+            url: Joi.string().allow("", null),
+            filename: Joi.string().allow("", null)
+        })
     }).required()
 });
 
