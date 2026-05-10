@@ -3,7 +3,7 @@
 🚧 Status: In Progress
 
 ## 📖 About
-WanderStay is a full-stack web application for listing and managing travel stays. Users can create, edit, and manage property listings with authentication, validation, flash messages, and proper error handling.
+WanderStay is a full-stack web application for listing and managing travel stays. Users can create, edit, and manage property listings with authentication, authorization, validation, flash messages, and proper error handling using MVC architecture.
 
 ---
 
@@ -18,6 +18,10 @@ WanderStay is a full-stack web application for listing and managing travel stays
 - Custom error handling middleware
 - Async error handling using wrapAsync
 - Responsive UI with Bootstrap
+- Authorization for listings and reviews
+- Ownership-based access control
+- MVC architecture for better project structure
+- Review system with ratings
 
 ---
 
@@ -32,6 +36,20 @@ WanderStay is a full-stack web application for listing and managing travel stays
 - Passport.js
 - Express-session
 - Connect-flash
+
+---
+
+## 📂 Project Structure
+
+models/         # Mongoose database schemas
+routes/         # Express route handlers
+controllers/    # Controller logic (MVC)
+views/          # EJS templates
+public/         # Static assets (CSS/JS/images)
+init/           # Database initialization files & sample data
+middleware.js   # Custom middleware functions
+schema.js       # Joi validation schemas
+app.js          # Main application entry point
 
 ---
 
@@ -71,16 +89,18 @@ http://localhost:8080
 
 ## 📸 Screenshots
 
-(Add screenshots here)
 
 ---
 
-## 🔐 Authentication Features
+## 🔐 Authentication & Authorization
 
-- User signup and login
+- User signup, login, and logout
 - Session-based authentication
+- Password hashing and salting
+- Protected routes for authenticated users
+- Authorization for listings and reviews
+- Ownership-based access control
 - Flash success/error messages
-- Protected routes
 
 ---
 
@@ -89,7 +109,6 @@ http://localhost:8080
 - Cloudinary image upload
 - Map integration
 - Deployment
-- Review authorization
 - Better responsive design
 
 ---
