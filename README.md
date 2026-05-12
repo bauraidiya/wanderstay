@@ -20,9 +20,12 @@ WanderStay is a full-stack web application for listing and managing travel stays
 - Responsive UI with Bootstrap
 - Authorization for listings and reviews
 - Ownership-based access control
-- MVC architecture for better project structure
 - Review system with ratings
-
+- Image upload using Cloudinary & Multer
+- Interactive maps using Mapbox
+- Automatic geocoding from location input
+- GeoJSON-based location storage
+- MVC architecture for better project structure
 ---
 
 ## 🛠️ Tech Stack
@@ -36,6 +39,9 @@ WanderStay is a full-stack web application for listing and managing travel stays
 - Passport.js
 - Express-session
 - Connect-flash
+- Cloudinary
+- Multer
+- Mapbox SDK
 
 ---
 
@@ -87,6 +93,18 @@ http://localhost:8080
 
 ---
 
+### 🔑 Environment Variables
+
+Create a `.env` file and add:
+
+MAP_TOKEN=your_mapbox_token
+CLOUD_NAME=your_cloudinary_name
+CLOUD_API_KEY=your_cloudinary_api_key
+CLOUD_API_SECRET=your_cloudinary_api_secret
+SECRET=your_session_secret
+
+---
+
 ## 📸 Screenshots
 
 
@@ -105,9 +123,10 @@ http://localhost:8080
 ---
 
 ## 📌 Future Improvements
-
-- Cloudinary image upload
-- Map integration
+- Booking system
+- Payment integration
+- Search and filtering
+- Wishlist feature
 - Deployment
 - Better responsive design
 
