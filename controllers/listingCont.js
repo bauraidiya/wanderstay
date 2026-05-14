@@ -13,12 +13,15 @@ module.exports.renderNewForm = (req,res)=>{
 
 module.exports.newListing = async(req,res,next)=>{
     try {
+        console.log("newListing request body:", req.body);
+        console.log("newListing file:", req.file);
+
         if (!req.file) {
             req.flash("error", "Image upload failed or no file selected.");
             return res.redirect("/listing/new");
         }
 
-        const location = req.body.listing.location;
+        const location = req.body.location;
         const response = await Promise.race([
             geocodingClient.forwardGeocode({
                 query: location,
