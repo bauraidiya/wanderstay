@@ -33,7 +33,7 @@ module.exports.newListing = async(req,res,next)=>{
         }
 
         const { path: url, filename } = req.file;
-        const newListing = new Listing(req.body.listing);
+        const newListing = new Listing(req.body);
         newListing.owner = req.user._id;
         newListing.image = { url, filename };
         newListing.geometry = response.body.features[0].geometry;
@@ -81,7 +81,7 @@ module.exports.editListing = async(req,res)=>{
 
 module.exports.updateListing = async(req,res)=>{
    let {id}= req.params;
-   let listing = await Listing.findByIdAndUpdate(id, req.body.listing);
+   let listing = await Listing.findByIdAndUpdate(id, req.body);
    
    if(typeof req.file!=="undefined"){
     let url = req.file.path;

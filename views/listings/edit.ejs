@@ -8,7 +8,7 @@
             enctype="multipart/form-data">
             <div class="mb-3">
                  <label for="title" class="form-label">Title</label>
-                 <input type="text" name="listing[title]" value="<%= allListing.title %>" class="form-control" required>
+                 <input type="text" name="title" value="<%= allListing.title %>" class="form-control" required>
                  <div class="invalid-feedback">
                     Please provide a valid title.
                 </div> 
@@ -16,7 +16,7 @@
            
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                 <textarea name="listing[description]" class="form-control" required><%= allListing.description %></textarea>
+                 <textarea name="description" class="form-control" required><%= allListing.description %></textarea>
                  <div class="invalid-feedback">
                     Description should be short.
                 </div> 
@@ -28,13 +28,13 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Upload new Image</label>
-                <input type="file" name="listing[image]" class="form-control">
+                <input type="file" name="image" class="form-control">
                 
             </div>
             
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
-                <input  name="listing[price]" value="<%= allListing.price %>" required class="form-control" required>
+                <input  name="price" value="<%= allListing.price %>" required class="form-control" required>
                 <div class="invalid-feedback">
                     Please provide a valid Price.
                 </div> 
@@ -42,7 +42,7 @@
             
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>
-                 <input type="text" name="listing[location]" value="<%= allListing.location %>" class="form-control"required>
+                 <input type="text" name="location" value="<%= allListing.location %>" class="form-control"required>
                  <div class="invalid-feedback">
                     Please provide a valid Location.
                 </div> 
@@ -50,7 +50,7 @@
            
             <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
-                <input type="text" name="listing[country]" value="<%= allListing.country %>" class="form-control" required>
+                <input type="text" name="country" value="<%= allListing.country %>" class="form-control" required>
                 <div class="invalid-feedback">
                     Please provide a valid country.
                 </div> 

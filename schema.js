@@ -1,17 +1,15 @@
 const Joi = require('joi');
 
 module.exports.listingSchema = Joi.object({
-    listing : Joi.object({
-        title:Joi.string().required(),
-        description: Joi.string().required(),
-        price: Joi.number().min(0).required().messages({
-            "number.base": "Price must be a number",
-            "number.min": "Price cannot be negative",
-            "any.required": "Price is required"
-        }),
-        location: Joi.string().required(),
-        country: Joi.string().required()
-    }).required()
+    title:Joi.string().required(),
+    description: Joi.string().required(),
+    price: Joi.number().min(0).required().messages({
+        "number.base": "Price must be a number",
+        "number.min": "Price cannot be negative",
+        "any.required": "Price is required"
+    }),
+    location: Joi.string().required(),
+    country: Joi.string().required()
 });
 
 module.exports.reviewSchema = Joi.object({

@@ -15,7 +15,7 @@ router.
     .get( wrapAsync(listingController.index))
     .post( 
         isLoggedIn,
-        upload.single("listing[image]"),
+        upload.single("image"),
         validateListing ,  
         wrapAsync(listingController.newListing)
 );
@@ -28,7 +28,7 @@ router.
     .get(wrapAsync(listingController.showListing))
     .put(isLoggedIn, 
         isOwner, 
-        upload.single("listing[image]"),
+        upload.single("image"),
         validateListing , 
         wrapAsync(listingController.updateListing))
     .delete(isLoggedIn, isOwner, wrapAsync(listingController.deleteListing)
