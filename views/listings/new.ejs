@@ -6,21 +6,23 @@
         <form method="post" action="/listing" class="needs-validation" novalidate enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" 
-                name="listing[title]" 
+                <input id="title" type="text" 
+                name="title" 
                 placeholder="Enter title name" 
+                autocomplete="off"
                 class="form-control" 
                 required>
                  <div class="valid-feedback">
-                    Title Looks good!
+                    Title looks good!
                 </div>
             </div>
            
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea type="text" 
-                name="listing[description]" 
+                <textarea id="description" 
+                name="description" 
                 placeholder="Write Description here" 
+                autocomplete="off"
                 class="form-control"
                  required
                 ></textarea> 
@@ -32,12 +34,12 @@
            
             <div class="mb-3">
                 <label for="image" class="form-label">Upload File</label>
-                <input type="file" name="image" class="form-control">
+                <input id="image" type="file" name="image" class="form-control" required>
             </div>
             <div class="row">
              <div class="mb-3 col-md-4">
                 <label for="price" class="form-label">Price</label>
-                <input name="price" placeholder="Ex: 1200" class="form-control"  required>
+                <input id="price" name="price" placeholder="Ex: 1200" autocomplete="off" class="form-control"  required>
                 <div class="invalid-feedback">
                     Please provide a valid price.
                 </div> 
@@ -45,9 +47,10 @@
 
               <div class="mb-3 col-md-8">
                 <label for="country" class="form-label">Country</label>
-                <input type="text" 
+                <input id="country" type="text" 
                 name="country" 
                 placeholder="Ex:- India" 
+                autocomplete="country"
                 class="form-control"
                  required
                 >
@@ -59,7 +62,7 @@
           
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>
-                <input type="text" name="location" placeholder="Ex:- Dehradun, Uttarakhand" class="form-control"  required >
+                <input id="location" type="text" name="location" placeholder="Ex:- Dehradun, Uttarakhand" autocomplete="off" class="form-control"  required >
                 <div class="invalid-feedback">
                     Please provide a valid location.
                 </div> 
@@ -67,7 +70,7 @@
             
            
             
-            <button class="Add-btn btn-dark mb-3">Add</button>
+            <button type="submit" class="Add-btn btn-dark mb-3">Add</button>
         </form>
     </div>
     </div>
