@@ -5,15 +5,12 @@ module.exports.listingSchema = Joi.object({
         title:Joi.string().required(),
         description: Joi.string().required(),
         price: Joi.number().min(0).required().messages({
-      "number.base": "Price must be a number",
-      "number.min": "Price cannot be negative",
-      "any.required": "Price is required"}),
+            "number.base": "Price must be a number",
+            "number.min": "Price cannot be negative",
+            "any.required": "Price is required"
+        }),
         location: Joi.string().required(),
-        country: Joi.string().required(),
-        image: Joi.object({
-            url: Joi.string().allow("", null),
-            filename: Joi.string().allow("", null)
-        })
+        country: Joi.string().required()
     }).required()
 });
 

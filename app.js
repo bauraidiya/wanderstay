@@ -22,6 +22,7 @@ const reviewsRouter =  require("./routes/review.js");
 const userRouter =  require("./routes/Users.js");
 
 const dbUrl = process.env.ATLASDB_URL;
+const secret = process.env.SECRET || "thisshouldbeabettersecret!";
 console.log(dbUrl);
 
 main()
@@ -52,7 +53,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     crypto: {
-        secret: process.env.SECRET,
+        secret,
     },
     touchAfter: 24 * 3600,
 });
@@ -63,7 +64,7 @@ store.on("error", (err)=>{
 
 const sessionOptions={
     store,
-    secret: process.env.SECRET,
+    secret,
     resave: false,
     saveUninitialized: true, 
     cookie:{
@@ -105,6 +106,8 @@ app.use((err,req,res,next)=>{
     res.status(status).render("error.ejs", {message});
     // res.status(status).send(message);
 });
-app.listen(8080,()=>{
-    console.log("Server is listening to port 8080");
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT,()=>{
+    console.log(`Server is listening on port ${PORT}`);
 });

@@ -12,23 +12,41 @@ module.exports.renderNewForm = (req,res)=>{
 };
 
 module.exports.newListing = async(req,res,next)=>{
-    let response = await geocodingClient.forwardGeocode({
-        query: req.body.listing.location,
-        limit: 1,
-    })
-    .send();
-    let url = req.file.path;
-    let filename = req.file.filename;
+    try {
+        if (!req.file) {
+            req.flash("error", "Image upload failed or no file selected.");
+            return res.redirect("/listing/new");
+        }
 
-    const newListing = new Listing(req.body.listing);
-    newListing.owner= req.user._id;
-    newListing.image = {url, filename};
-    newListing.geometry= response.body.features[0].geometry;
-    let savedListing = await newListing.save();
-    console.log(savedListing);
-    req.flash("success", "New listing created successfully!");
-    res.redirect("/listing");
-   
+        const location = req.body.listing.location;
+        const response = await Promise.race([
+            geocodingClient.forwardGeocode({
+                query: location,
+                limit: 1,
+            }).send(),
+            new Promise((_, reject) => setTimeout(() => reject(new Error("Geocoding service timed out. Please try again.")), 15000))
+        ]);
+
+        if (!response.body.features || !response.body.features.length) {
+            req.flash("error", "Location not found. Please enter a valid location.");
+            return res.redirect("/listing/new");
+        }
+
+        const { path: url, filename } = req.file;
+        const newListing = new Listing(req.body.listing);
+        newListing.owner = req.user._id;
+        newListing.image = { url, filename };
+        newListing.geometry = response.body.features[0].geometry;
+
+        const savedListing = await newListing.save();
+        console.log("Saved listing:", savedListing);
+        req.flash("success", "New listing created successfully!");
+        res.redirect("/listing");
+    } catch (err) {
+        console.error("Error creating listing:", err);
+        req.flash("error", err.message || "Could not create listing.");
+        res.redirect("/listing/new");
+    }
 };
 
 module.exports.showListing = async(req,res)=>{
