@@ -1,6 +1,7 @@
-if(process.env.NODE_ENV != "production"){
 require("dotenv").config();
-}
+const dns = require("dns");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+dns.setDefaultResultOrder("ipv4first");
 
 const express = require("express");
 const app = express();
@@ -10,6 +11,7 @@ const methodOverride = require("method-override");
 const ejsMate= require("ejs-mate"); 
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
+const { MongoStore } = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const localStrategy = require("passport-local");
@@ -19,14 +21,25 @@ const listingRouter =  require("./routes/listing.js");
 const reviewsRouter =  require("./routes/review.js");
 const userRouter =  require("./routes/Users.js");
 
-main()
-    .then((res)=>{
-    console.log("connected to DB");
-    })
-    .catch((err)=>{ console.log(err)});
+const dbUrl = process.env.ATLASDB_URL;
+console.log(dbUrl);
 
-async function main(){
-    await mongoose.connect("mongodb://127.0.0.1:27017/wanderLust");
+main()
+  .then(() => {
+    console.log("MongoDB Connected Successfully");
+  })
+  .catch((err) => {
+    console.log("MongoDB ERROR:");
+    console.log(err);
+  });
+
+async function main() {
+    await mongoose.connect(dbUrl, {
+        serverSelectionTimeoutMS: 30000,
+        family: 4,
+        bufferTimeoutMS: 30000,
+        maxPoolSize: 10,
+    });
 }
 
 app.set("view engine", "ejs");
@@ -36,8 +49,21 @@ app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: process.env.SECRET,
+    },
+    touchAfter: 24 * 3600,
+});
+
+store.on("error", (err)=>{
+    console.log("ERROR IN MONGO-SESSION STORE", err);
+});
+
 const sessionOptions={
-    secret: "mysupersecretcode",
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true, 
     cookie:{
@@ -46,6 +72,8 @@ const sessionOptions={
         httpOnly : true,
     },
 };
+
+sessionOptions.store = store;
 app.use(session(sessionOptions));
 app.use(flash());
 
@@ -67,9 +95,6 @@ app.use("/listing", listingRouter);
 app.use("/listing/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
 
-app.get("/",(req,res)=>{
-    res.send("Hi I'm root");
-});
 
 app.use((req,res,next)=>{
     next(new ExpressError(404, "OOPS Page not found!"));
