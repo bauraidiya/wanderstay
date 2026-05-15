@@ -10,6 +10,8 @@ const {storage} = require("../cloudConfig.js");
 const upload = multer({storage});
 
 
+router.get("/", home);
+
 router.
     route("/")
     .get( wrapAsync(listingController.index))
