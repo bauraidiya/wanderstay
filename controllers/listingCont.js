@@ -16,12 +16,9 @@ module.exports.newListing = async(req,res,next)=>{
         console.log("newListing request body:", req.body);
         console.log("newListing file:", req.file);
 
-        let url = "https://images.unsplash.com/photo-1506744038136-46273834b3fb";
-        let filename = "test";
-
-        if (req.file) {
-            url = req.file.path;
-            filename = req.file.filename;
+        if (!req.file) {
+        req.flash("error", "Image upload failed or no file selected.");
+        return res.redirect("/listing/new");
         }
 
         const location = req.body.location;
@@ -39,7 +36,7 @@ module.exports.newListing = async(req,res,next)=>{
             return res.redirect("/listing/new");
         }
 
-        // const { path: url, filename } = req.file;
+        const { path: url, filename } = req.file;
         const newListing = new Listing(req.body);
         newListing.owner = req.user._id;
         newListing.image = { url, filename };
