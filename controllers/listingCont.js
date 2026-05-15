@@ -16,12 +16,16 @@ module.exports.newListing = async(req,res,next)=>{
         console.log("newListing request body:", req.body);
         console.log("newListing file:", req.file);
 
-        if (!req.file) {
-            req.flash("error", "Image upload failed or no file selected.");
-            return res.redirect("/listing/new");
+        let url = "https://images.unsplash.com/photo-1506744038136-46273834b3fb";
+        let filename = "test";
+
+        if (req.file) {
+            url = req.file.path;
+            filename = req.file.filename;
         }
 
         const location = req.body.location;
+
         const response = await Promise.race([
             geocodingClient.forwardGeocode({
                 query: location,
