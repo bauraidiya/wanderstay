@@ -97,11 +97,11 @@ http://localhost:8080
 
 Create a `.env` file and add:
 
-MAP_TOKEN=your_mapbox_token
-CLOUD_NAME=your_cloudinary_name
-CLOUD_API_KEY=your_cloudinary_api_key
-CLOUD_API_SECRET=your_cloudinary_api_secret
-SECRET=your_session_secret
+MAP_TOKEN=mapbox_token
+CLOUD_NAME=cloudinary_name
+CLOUD_API_KEY=cloudinary_api_key
+CLOUD_API_SECRET=cloudinary_api_secret
+SECRET=session_secret
 
 ---
 
