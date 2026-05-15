@@ -39,7 +39,7 @@ module.exports.newListing = async(req,res,next)=>{
             return res.redirect("/listing/new");
         }
 
-        const { path: url, filename } = req.file;
+        // const { path: url, filename } = req.file;
         const newListing = new Listing(req.body);
         newListing.owner = req.user._id;
         newListing.image = { url, filename };
