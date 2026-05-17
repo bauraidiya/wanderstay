@@ -11,11 +11,11 @@
     <div class="show-card col-lg-8 offset-lg-2 col-md-10 offset-md-1">
         <img src="<%=allData.image.url %>" class="card-img-top show-img" alt="listing_Image">
     <div class="card-body listing-card">
-            <p class="card-text">owned by <i><%= allData.owner.username%></i></p>
-            <p class="card-text" ><%= allData.description%></p>
-            <p class="card-text">Price:- &#8377; <%= allData.price ? allData.price.toLocaleString("en-IN") : "N/A" %> / Night</p>
-            <p class="card-text">Location:- <%= allData.location %></p>
-            <p class="card-text">Country:- <%= allData.country %></p>           
+            <p class="card-text"> Owned by <b>@<i><%= allData.owner.username%></i></b></p>
+            <p class="card-text"><%= allData.description%></p>
+            <p class="card-text"> Price:- &#8377; <%= allData.price ? allData.price.toLocaleString("en-IN") : "N/A" %> / Night</p>
+            <p class="card-text"> Location:- <%= allData.location %></p>
+            <p class="card-text"> Country:- <%= allData.country %></p>           
   </div> 
   <br>
    <% if(currentUser && allData.owner._id.equals(currentUser._id)) {%>
