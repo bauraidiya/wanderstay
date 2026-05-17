@@ -98,6 +98,11 @@ p, a{
     opacity: 0.2;
     background-color: white;
 }
+
+.review-card {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
 .Add-btn{
     background-color: #fe424d;
     border: none;
