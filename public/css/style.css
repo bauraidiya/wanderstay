@@ -17,8 +17,11 @@ h3{
 h2{
   font-weight: 500 !important;
 }
-p, a{
-    font-weight: 600 !important;   
+.form-control,
+.form-select {
+    border: 1px solid #bdbdbd;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    background-color: #fff;
 }
 
 .main-content {
@@ -86,6 +89,11 @@ p, a{
 .card-text p{
     font-weight: 400 !important;
 }
+.listing-card,
+.review-card {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-radius: 1rem;
+}
 .listing-link{
     text-decoration: none;
 }
@@ -116,6 +124,20 @@ p, a{
 
 .show-img{
     height: 30vh;
+}
+
+.Add-btn,
+.edit-btn,
+.search-btn {
+    background-color: #fe424d;
+    color: white;
+    transition: 0.3s;
+}
+
+.Add-btn:hover,
+.edit-btn:hover,
+.search-btn:hover {
+    opacity: 0.9;
 }
 
 .btns{
