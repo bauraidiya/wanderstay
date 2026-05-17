@@ -148,6 +148,10 @@ h2{
     gap: 0.7rem;
     margin-top: 0.5rem;
 }
+.del {
+    padding: 0 !important;
+    margin: 0 !important;
+}
 .show-btns{
     background-color: #fe424d !important;
     color: white !important;
@@ -168,6 +172,16 @@ h2{
     border: none;
     padding: 0.6rem 1.2rem;
     border-radius: 0.5rem;
+}
+
+.show-btns,
+.del button {
+    min-width: 95px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
 }
 
 .show-card{
