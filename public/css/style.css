@@ -149,14 +149,18 @@ h2{
     margin-top: 0.5rem;
 }
 .show-btns{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     background-color: #fe424d !important;
     color: white !important;
+    border: none !important;
     padding: 0.6rem 1.2rem;
     border-radius: 0.5rem;
     text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
 }
 .del button{
     background-color: #222222;
