@@ -14,6 +14,11 @@ const { required } = require("joi");
         url: String,
         filename: String,
     },
+    category:{
+        type: String,
+        required: true,
+        enum: ["Trending", "Rooms", "Iconic cities", "Mountains", "Castle", "Amazing Pools", "Camping", "Farms", "Arctic", "Boats"],
+    },
     price:{
         type:Number,
     },
@@ -23,6 +28,7 @@ const { required } = require("joi");
     country:{
         type: String,
     },
+
     reviews:[{
         type: Schema.Types.ObjectId,
         ref: "Review",
