@@ -36,44 +36,41 @@
 
     <div id="filters">
         <div class="filter">
-           <div> <i class="fa-solid fa-fire"></i></div>
-            <p>Trending</p>
+           <a href="/listing?category=Trending"> <i class="fa-solid fa-fire"></i>Trending</a>
+         </div>
+        <div class="filter">
+           <a href="/listing?category=Rooms"> <i class="fa-solid fa-bed"></i>Rooms</a>
+            
         </div>
         <div class="filter">
-           <div> <i class="fa-solid fa-bed"></i></div>
-            <p>Rooms</p>
+           <a href="/listing?category=Iconic+cities"> <i class="fa-solid fa-mountain-city"></i>Iconic cities</a>
+            
         </div>
         <div class="filter">
-           <div> <i class="fa-solid fa-mountain-city"></i></div>
-            <p>Iconic cities</p>
+           <a href="/listing?category=Mountains"> <i class="fa-solid fa-mountain"></i>Mountains</a>
+            
         </div>
         <div class="filter">
-           <div> <i class="fa-solid fa-mountain"></i></div>
-            <p>Mountains</p>
+           <a href="/listing?category=Castles"> <i class="fa-brands fa-fort-awesome"></i>Castles</a>
+            
         </div>
         <div class="filter">
-           <div> <i class="fa-brands fa-fort-awesome"></i></div>
-            <p>Castle</p>
-        </div>
-        <div class="filter">
-           <div><i class="fa-solid fa-person-swimming"></i></div>
-            <p>Amazing Pools</p>
+           <a href="/listing?category=Amazing+Pools"> <i class="fa-solid fa-person-swimming"></i>Amazing Pools</a>
+            
         </div>
          <div class="filter">
-           <div> <i class="fa-solid fa-tents"></i></div>
-            <p>Camping</p>
+           <a href="/listing?category=Camping"> <i class="fa-solid fa-tents"></i>Camping</a>
+            
         </div>
         <div class="filter">
-           <div><i class="fa-solid fa-cow"></i></div>
-            <p>Farms</p>
+           <a href="/listing?category=Farms"> <i class="fa-solid fa-cow"></i>Farms</a>
+           
         </div>
         <div class="filter">
-           <div><i class="fa-solid fa-snowflake"></i></div>
-            <p>Arctic</p>
+           <a href="/listing?category=Arctic"> <i class="fa-solid fa-snowflake"></i>Arctic</a>
         </div>
         <div class="filter">
-           <div><i class="fa-solid fa-sailboat"></i></div>
-            <p>Boats</p>
+           <a href="/listing?category=Boats"> <i class="fa-solid fa-sailboat"></i>Boats</a>
         </div>
 
         <div class="tax-toggle">
@@ -89,9 +86,13 @@
             <h3>No listings found for "<%= search %>"</h3>
         <% } %>
 
+         <% if(allListings.length === 0 && category) { %>
+            <h3>No listings available for "<%= category %>" </h3>
+        <% } %>
+
         <%for(let listing of allListings){%>
             <a href="/listing/<%= listing._id %>" class="listing-link">
-         <div class="card col listing-card" >>
+         <div class="card col listing-card" >
             <img src="<%= listing.image.url%>" 
             class="card-img-top" 
             alt="Listing image" 

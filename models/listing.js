@@ -17,7 +17,7 @@ const { required } = require("joi");
     category:{
         type: String,
         required: true,
-        enum: ["Trending", "Rooms", "Iconic cities", "Mountains", "Castle", "Amazing Pools", "Camping", "Farms", "Arctic", "Boats"],
+        enum: ["Trending", "Rooms", "Iconic cities", "Mountains", "Castles", "Amazing Pools", "Camping", "Farms", "Arctic", "Boats"],
     },
     price:{
         type:Number,

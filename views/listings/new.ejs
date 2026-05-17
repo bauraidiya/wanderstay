@@ -60,31 +60,32 @@
               </div>
             </div>
           
-            <div class="mb-3">
-                <label for="location" class="form-label">Location</label>
-                <input id="location" type="text" name="location" placeholder="Ex:- Dehradun, Uttarakhand" autocomplete="off" class="form-control"  required >
-                <div class="invalid-feedback">
-                    Please provide a valid location.
-                </div> 
-            </div>
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="location" class="form-label">Location</label>
+                    <input id="location" type="text" name="location" placeholder="Ex:- Dehradun, Uttarakhand" autocomplete="off" class="form-control"  required >
+                    <div class="invalid-feedback">
+                        Please provide a valid location.
+                    </div> 
+                </div>
 
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Choose a category
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Trending</a></li>
-                    <li><a class="dropdown-item" href="#">Rooms</a></li>
-                    <li><a class="dropdown-item" href="#">Iconic cities</a></li>
-                    <li><a class="dropdown-item" href="#">Mountains</a></li>
-                    <li><a class="dropdown-item" href="#">Castle</a></li>
-                    <li><a class="dropdown-item" href="#">Amazing Pools</a></li>
-                    <li><a class="dropdown-item" href="#">Camping</a></li>
-                    <li><a class="dropdown-item" href="#">Farms</a></li>
-                    <li><a class="dropdown-item" href="#">Arctic</a></li>
-                    <li><a class="dropdown-item" href="#">Boats</a></li>
-                </ul>
-</div>
+               <div class="mb-3 col-md-8 dropdown">
+                    
+                    <select class="form-select" name="category" id="category" required>
+                        <option value="" selected disabled>Choose a category</option>
+                        <option>Trending</option>
+                        <option>Rooms</option>
+                        <option>Iconic cities</option>
+                        <option>Mountains</option>
+                        <option>Castle</option>
+                        <option>Amazing Pools</option>
+                        <option>Camping</option>
+                        <option>Farms</option>
+                        <option>Arctic</option>
+                        <option>Boats</option>
+                    </select>
+                </div>
+            </div>
             
             <button type="submit" class="Add-btn btn-dark mb-3">Add</button>
         </form>
